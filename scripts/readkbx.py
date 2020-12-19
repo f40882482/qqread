@@ -54,198 +54,6 @@ def get_user_info(headers):
         return
 
 
-def get_daily_beans(headers):
-    """
-    阅豆签到
-    :param headers:
-    :return:
-    """
-    url = 'https://mqqapi.reader.qq.com/mqq/sign_in/user'
-    try:
-        response = requests.post(url=url, headers=headers, timeout=(5, 10)).json()
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def get_daily_tasks(headers):
-    """
-    获取今日任务列表
-    :param headers:
-    :return:
-    """
-    url = 'https://mqqapi.reader.qq.com/mqq/red_packet/user/page?fromGuid='
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        if response['code'] == 0:
-            # print('获取今日任务')
-            # pretty_dict(response['data'])
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def get_today_read_time(headers):
-    """
-    得到今日阅读时长
-    :param headers:
-    :return:
-    """
-    url = 'https://mqqapi.reader.qq.com/mqq/page/config?router=%2Fpages%2Fbook-read%2Findex&options='
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        # print('今日阅读')
-        # pretty_dict(response)
-        if response['code'] == 0:
-            return response['data']['pageParams']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def read_time_reward_tasks(headers, seconds):
-    """
-    阅读奖励，好像一个号只能领一次
-    :param headers:
-    :param seconds:
-    :return:
-    """
-    url = f'https://mqqapi.reader.qq.com/mqq/red_packet/user/read_time_reward?seconds={seconds}'
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        # print('阅读奖励')
-        # pretty_dict(response)
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def get_week_read_time(headers):
-    """
-    周阅读时长
-    :param headers:
-    :return:
-    """
-    url = 'https://mqqapi.reader.qq.com/mqq/v1/bookShelfInit'
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        # print('周阅读时长')
-        # pretty_dict(response)
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def read_now(headers):
-    """
-    立即阅读
-    :param headers:
-    :return:
-    """
-    url = 'https://mqqapi.reader.qq.com/mqq/red_packet/user/read_book'
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        # pretty_dict(response)
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def read_tasks(headers, seconds):
-    """
-    每日阅读任务
-    :param headers:
-    :param seconds:
-    :return:
-    """
-    url = f'https://mqqapi.reader.qq.com/mqq/red_packet/user/read_time?seconds={seconds}'
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def daily_sign(headers):
-    """
-    今日打卡
-    :param headers:
-    :return:
-    """
-    url = 'https://mqqapi.reader.qq.com/mqq/red_packet/user/clock_in/page'
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def watch_daily_sign_ads(headers):
-    """
-    今日打卡看广告翻倍
-    :param headers:
-    :return:
-    """
-    url = 'https://mqqapi.reader.qq.com/mqq/red_packet/user/clock_in_video'
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        time.sleep(3)
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def watch_videos(headers):
-    """
-    看视频，拿金币
-    :param headers:
-    :return:
-    """
-    url = 'https://mqqapi.reader.qq.com/mqq/red_packet/user/watch_video'
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
 def open_treasure_box(headers):
     """
     每20分钟开一次宝箱
@@ -277,65 +85,6 @@ def watch_treasure_box_ads(headers):
         time.sleep(15)
         if response['code'] == 0:
             return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def get_week_read_tasks(headers):
-    """
-    周阅读奖励查询
-    :param headers:
-    :return:
-    """
-    url = 'https://mqqapi.reader.qq.com/mqq/pickPackageInit'
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def get_week_read_reward(headers, read_time):
-    """
-    领取周阅读奖励
-    :param headers:
-    :param read_time: 阅读时长
-    :return:
-    """
-    url = f'https://mqqapi.reader.qq.com/mqq/pickPackage?readTime={read_time}'
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        # print(f'领取周阅读奖励({read_time})')
-        # pretty_dict(response)
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
-
-def read_books(headers, book_url, upload_time):
-    """
-    刷时长
-    :param headers:
-    :return:
-    """
-    findtime = re.compile(r'readTime=(.*?)&read_')
-    url = re.sub(findtime.findall(book_url)[0], str(upload_time * 60 * 1000), str(book_url))
-    # url = book_url.replace('readTime=', 'readTime=' + str(upload_time))
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        if response['code'] == 0:
-            return True
         else:
             return
     except:
@@ -457,6 +206,36 @@ def qq_read():
             title = f'☆【企鹅读书】{beijing_datetime.strftime("%Y-%m-%d %H:%M:%S")} ☆'
             content = ''
 
+            # 调用 track 接口，为保证输出结果美观，输出信息写在后面
+            track_result = track(headers=headers, body=body)
+            # 获取用户信息（昵称）
+            user_info = get_user_info(headers=headers)
+            if user_info:
+                content += f'【用户昵称】{user_info["user"]["nickName"]}'
+            # 获取任务列表，查询金币余额
+            daily_tasks = get_daily_tasks(headers=headers)
+            if daily_tasks:
+                content += f'\n【金币余额】剩余{daily_tasks["user"]["amount"]}金币，可提现{daily_tasks["user"]["amount"] // 10000}元'
+            # 查询今日获得金币数量
+            beijing_datetime_0 = beijing_datetime.strftime('%Y-%m-%d') + ' 00:00:00'
+            today_coins_total = 0
+            is_today_red_packet = True
+            for pn in range(1, 15):
+                red_packets = get_red_packets(headers=headers, pn=pn)
+                if red_packets and is_today_red_packet:
+                    for red_packet in red_packets['list']:
+                        if red_packet['content'] >= beijing_datetime_0:
+                            today_coins_total += red_packet['amount']
+                        else:
+                            is_today_red_packet = False
+                            break
+                elif not red_packets:
+                    content += f'\n【今日收益】请求接口错误！'
+                    break
+                else:
+                    content += f"\n【今日收益】{today_coins_total}金币，约{'{:4.2f}'.format(today_coins_total / 10000)}元"
+                    break
+
             # 开宝箱领金币
             if daily_tasks['treasureBox']['doneFlag'] == 0:
                 treasure_box_reward = open_treasure_box(headers=headers)
@@ -469,6 +248,7 @@ def qq_read():
                 treasure_box_ads_reward = watch_treasure_box_ads(headers=headers)
                 if treasure_box_ads_reward:
                     content += f"\n【宝箱奖励翻倍】获得{treasure_box_ads_reward['amount']}金币"
+
 
             content += f'\n🕛耗时：%.2f秒' % (time.time() - start_time)
             content += f'\n如果帮助到您可以点下🌟STAR鼓励我一下，谢谢~'
