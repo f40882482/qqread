@@ -267,9 +267,3 @@ def qq_read():
         print('未执行该任务，如需执行请在配置文件的对应的任务中，将参数enable设置为true\n')
 
 
-def main():
-    qq_read()
-
-
-if __name__ == '__main__':
-    main()
