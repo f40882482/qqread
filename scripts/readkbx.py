@@ -27,32 +27,6 @@ from utils import notify
 from utils.configuration import read
 
 
-def pretty_dict(dict):
-    """
-    格式化输出 json 或者 dict 格式的变量
-    :param dict:
-    :return:
-    """
-    return print(json.dumps(dict, indent=4, ensure_ascii=False))
-
-
-def get_user_info(headers):
-    """
-    获取任务信息
-    :param headers:
-    :return:
-    """
-    url = 'https://mqqapi.reader.qq.com/mqq/user/init'
-    try:
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
-
 
 
 def open_treasure_box(headers):
@@ -115,24 +89,6 @@ def track(headers, body):
         print(traceback.format_exc())
         return
 
-
-def get_red_packets(headers, pn):
-    """
-    今日金币统计
-    :param headers:
-    :param pn: 金币列表序号
-    :return:
-    """
-    try:
-        url = f'https://mqqapi.reader.qq.com/mqq/red_packet/user/trans/list?pn={pn}'
-        response = requests.get(url=url, headers=headers, timeout=(5, 10)).json()
-        if response['code'] == 0:
-            return response['data']
-        else:
-            return
-    except:
-        print(traceback.format_exc())
-        return
 
 
 def get_withdraw_info(headers):
