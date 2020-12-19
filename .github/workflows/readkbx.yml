@@ -1,4 +1,4 @@
-name: 企鹅读书
+name: 企鹅读书KBX
 
 on:
   workflow_dispatch:
