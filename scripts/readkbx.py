@@ -27,6 +27,225 @@ from utils import notify
 from utils.configuration import read
 
 
+def pretty_dict(dict):
+    """
+    格式化输出 json 或者 dict 格式的变量
+    :param dict:
+    :return:
+    """
+    return print(json.dumps(dict, indent=4, ensure_ascii=False))
+
+
+def get_user_info(headers):
+    """
+    获取任务信息
+    :param headers:
+    :return:
+    """
+    url = 'https://mqqapi.reader.qq.com/mqq/user/init'
+    try:
+        response = requests.get(url=url, headers=headers, timeout=30).json()
+        if response['code'] == 0:
+            return response['data']
+        else:
+            return
+    except:
+        print(traceback.format_exc())
+        return
+
+
+def get_daily_beans(headers):
+    """
+    阅豆签到
+    :param headers:
+    :return:
+    """
+    url = 'https://mqqapi.reader.qq.com/mqq/sign_in/user'
+    try:
+        response = requests.post(url=url, headers=headers, timeout=30).json()
+        if response['code'] == 0:
+            return response['data']
+        else:
+            return
+    except:
+        print(traceback.format_exc())
+        return
+
+
+def get_daily_tasks(headers):
+    """
+    获取今日任务列表
+    :param headers:
+    :return:
+    """
+    url = 'https://mqqapi.reader.qq.com/mqq/red_packet/user/page?fromGuid='
+    try:
+        response = requests.get(url=url, headers=headers, timeout=30).json()
+        if response['code'] == 0:
+            # print('获取今日任务')
+            # pretty_dict(response['data'])
+            return response['data']
+        else:
+            return
+    except:
+        print(traceback.format_exc())
+        return
+
+
+def get_today_read_time(headers):
+    """
+    得到今日阅读时长
+    :param headers:
+    :return:
+    """
+    url = 'https://mqqapi.reader.qq.com/mqq/page/config?router=%2Fpages%2Fbook-read%2Findex&options='
+    try:
+        response = requests.get(url=url, headers=headers, timeout=30).json()
+        # print('今日阅读')
+        # pretty_dict(response)
+        if response['code'] == 0:
+            return response['data']['pageParams']
+        else:
+            return
+    except:
+        print(traceback.format_exc())
+        return
+    
+
+def read_time_reward_tasks(headers, seconds):
+    """
+    阅读奖励，好像一个号只能领一次
+    :param headers:
+    :param seconds:
+    :return:
+    """
+    url = f'https://mqqapi.reader.qq.com/mqq/red_packet/user/read_time_reward?seconds={seconds}'
+    try:
+        response = requests.get(url=url, headers=headers, timeout=30).json()
+        # print('阅读奖励')
+        # pretty_dict(response)
+        if response['code'] == 0:
+            return response['data']
+        else:
+            return
+    except:
+        print(traceback.format_exc())
+        return
+
+
+def get_week_read_time(headers):
+    """
+    周阅读时长
+    :param headers:
+    :return:
+    """
+    url = 'https://mqqapi.reader.qq.com/mqq/v1/bookShelfInit'
+    try:
+        response = requests.get(url=url, headers=headers, timeout=30).json()
+        # print('周阅读时长')
+        # pretty_dict(response)
+        if response['code'] == 0:
+            return response['data']
+        else:
+            return
+    except:
+        print(traceback.format_exc())
+        return
+
+
+def read_now(headers):
+    """
+    立即阅读
+    :param headers:
+    :return:
+    """
+    url = 'https://mqqapi.reader.qq.com/mqq/red_packet/user/read_book'
+    try:
+        response = requests.get(url=url, headers=headers, timeout=30).json()
+        # pretty_dict(response)
+        if response['code'] == 0:
+            return response['data']
+        else:
+            return
+    except:
+        print(traceback.format_exc())
+        return
+
+
+def read_tasks(headers, seconds):
+    """
+    每日阅读任务
+    :param headers:
+    :param seconds:
+    :return:
+    """
+    url = f'https://mqqapi.reader.qq.com/mqq/red_packet/user/read_time?seconds={seconds}'
+    try:
+        response = requests.get(url=url, headers=headers, timeout=30).json()
+        if response['code'] == 0:
+            return response['data']
+        else:
+            return
+    except:
+        print(traceback.format_exc())
+        return
+
+
+def daily_sign(headers):
+    """
+    今日打卡
+    :param headers:
+    :return:
+    """
+    url = 'https://mqqapi.reader.qq.com/mqq/red_packet/user/clock_in/page'
+    try:
+        response = requests.get(url=url, headers=headers, timeout=30).json()
+        if response['code'] == 0:
+            return response['data']
+        else:
+            return
+    except:
+        print(traceback.format_exc())
+        return
+
+
+def watch_daily_sign_ads(headers):
+    """
+    今日打卡看广告翻倍
+    :param headers:
+    :return:
+    """
+    url = 'https://mqqapi.reader.qq.com/mqq/red_packet/user/clock_in_video'
+    try:
+        response = requests.get(url=url, headers=headers, timeout=30).json()
+        time.sleep(3)
+        if response['code'] == 0:
+            return response['data']
+        else:
+            return
+    except:
+        print(traceback.format_exc())
+        return
+
+
+def watch_videos(headers):
+    """
+    看视频，拿金币
+    :param headers:
+    :return:
+    """
+    url = 'https://mqqapi.reader.qq.com/mqq/red_packet/user/watch_video'
+    try:
+        response = requests.get(url=url, headers=headers, timeout=30).json()
+        if response['code'] == 0:
+            return response['data']
+        else:
+            return
+    except:
+        print(traceback.format_exc())
+        return
+
+
 
 
 def open_treasure_box(headers):
