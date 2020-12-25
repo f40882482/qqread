@@ -3,7 +3,7 @@ name: 企鹅读书KBX
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/2 * * * *'
+    - cron: '*/7 * * * *'
   watch:
     type: [started]
 
